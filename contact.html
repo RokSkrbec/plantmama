@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Plant Mama</title>
+  <style>
+    :root {
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --color-bg: #fff;
+      --color-text: #2c2c2c;
+      --color-primary: #5be9b9;
+      --color-secondary: #1e3a34;
+      --color-accent: #ffbe0b;
+      --color-subtle: #f5f5f5;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-sm);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .logo {
+      height: 32px;
+      width: auto;
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .nav-link {
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      opacity: 1;
+      color: var(--color-primary);
+    }
+
+    .section {
+      padding: var(--space-xl) var(--space-md);
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-form {
+      background: var(--color-subtle);
+      padding: var(--space-lg);
+      border-radius: 2px;
+      width: 100%;
+    }
+
+    .contact-form h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--color-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: var(--space-xs);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: var(--space-sm);
+      border: none;
+      background: var(--color-bg);
+      border-radius: 2px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      border: none;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .notification {
+      position: fixed;
+      top: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 2px;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .notification.show {
+      opacity: 1;
+    }
+
+    .notification.error {
+      background: #ff4646;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: var(--space-md);
+      opacity: 0.6;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: var(--color-primary);
+      border: none;
+      border-radius: 8px;
+      margin-left: 1em;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 4px;
+      background: var(--color-secondary);
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 1em;
+        background: var(--white);
+        flex-direction: column;
+        gap: 1em;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        padding: 1.5em 2em;
+        z-index: 99;
+      }
+
+      .nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .section {
+        padding: var(--space-lg) var(--space-sm);
+      }
+
+      .contact-form {
+        padding: var(--space-md);
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Initialize EmailJS
+      emailjs.init('JpVK2J1wnoSDtqhJm');
+
+      // Notification system
+      function showNotification(message, isError = false) {
+        const notif = document.getElementById('notification');
+        notif.textContent = message;
+        notif.className = `notification ${isError ? 'error' : ''} show`;
+        setTimeout(() => {
+          notif.className = 'notification';
+        }, 3000);
+      }
+
+      // Contact form handler
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const formData = {
+            email: this.email.value,
+            phone: this.phone.value || 'Not provided',
+            subject: this.subject.value,
+            message: this.message.value
+          };
+
+          emailjs.send('service_mrqkv3o', 'template_39kfyrc', {
+            email: formData.email,
+            phone: formData.phone,
+            title: formData.subject,
+            message: formData.message
+          })
+            .then(function () {
+              showNotification('Message sent successfully!');
+              contactForm.reset();
+            })
+            .catch(function (error) {
+              showNotification('Failed to send message. Please try again.', true);
+              console.error('EmailJS error:', error);
+            });
+        });
+      }
+
+      // Hamburger menu toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function () {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div id="notification" class="notification"></div>
+
+  <header class="header">
+    <img src="images/logo 3.png" alt="Plant Mama" class="logo">
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+      <a href="product.html" class="nav-link">Product</a>
+      <a href="technology.html" class="nav-link">Technology</a>
+    </nav>
+    <button class="hamburger" aria-label="Open navigation" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main class="section">
+    <form class="contact-form">
+      <h2>Get in touch</h2>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+
+      <button type="submit" class="button">Send Message</button>
+    </form>
+  </main>
+
+  <footer>
+    © 2025 Plant Mama. All rights reserved.
+  </footer>
+</body>
+
+</html>

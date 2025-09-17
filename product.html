@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plant Mama</title>
+  <title>Product | Plant Mama</title>
   <style>
     :root {
       --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -36,6 +36,9 @@
       line-height: 1.6;
       color: var(--color-text);
       background: var(--color-bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
@@ -71,43 +74,90 @@
       transition: opacity 0.2s;
     }
 
+    .nav-link:hover,
     .nav-link.active {
       opacity: 1;
       color: var(--color-primary);
     }
 
-    .nav-link:hover {
-      opacity: 1;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
+    .product-section {
       padding: var(--space-xl) var(--space-md);
       max-width: 1200px;
       margin: 0 auto;
-      align-items: center;
+      margin-top: var(--space-xl);
     }
 
-    .hero-content h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+    .product-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: var(--space-lg);
+      background: var(--color-subtle);
+      padding: var(--space-lg);
+      border-radius: 2px;
+    }
+
+    .product-content h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
       line-height: 1.1;
       margin-bottom: var(--space-md);
-      font-weight: 800;
+      color: var(--color-secondary);
     }
 
-    .hero-content p {
-      font-size: 1.2rem;
-      opacity: 0.8;
+    .product-content p {
+      font-size: 1.1rem;
+      opacity: 0.9;
       margin-bottom: var(--space-md);
     }
 
-    .hero-image img {
+    .product-image img {
       width: 100%;
       height: auto;
       border-radius: 2px;
+      object-fit: cover;
+    }
+
+    .features {
+      margin-top: var(--space-xl);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .feature {
+      padding: var(--space-md);
+      background: var(--color-subtle);
+      border-radius: 2px;
+    }
+
+    .feature h3 {
+      font-size: 1.2rem;
+      margin-bottom: var(--space-sm);
+      color: var(--color-secondary);
+    }
+
+    .feature p {
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: var(--space-md);
+      opacity: 0.6;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .product-section {
+        margin-top: var(--space-lg);
+      }
     }
 
     .button {
@@ -124,35 +174,6 @@
 
     .button:hover {
       transform: translateY(-2px);
-    }
-
-    .section {
-      padding: var(--space-xl) var(--space-md);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin-bottom: var(--space-lg);
-      text-align: center;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-md);
-    }
-
-    .feature {
-      padding: var(--space-md);
-      background: var(--color-subtle);
-      border-radius: 2px;
-    }
-
-    .feature h3 {
-      margin-bottom: var(--space-sm);
-      color: var(--color-secondary);
     }
 
     .hamburger {
@@ -179,19 +200,7 @@
       transition: 0.3s;
     }
 
-    footer {
-      text-align: center;
-      padding: var(--space-md);
-      opacity: 0.6;
-      margin-top: auto;
-    }
-
     @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
       .nav {
         display: none;
         position: absolute;
@@ -221,11 +230,11 @@
   <header class="header">
     <img src="images/logo 3.png" alt="Plant Mama" class="logo">
     <nav class="nav">
-      <a href="#" class="nav-link active">Home</a>
+      <a href="index.html" class="nav-link">Home</a>
       <a href="shop.html" class="nav-link">Shop</a>
       <a href="about.html" class="nav-link">About</a>
       <a href="contact.html" class="nav-link">Contact</a>
-      <a href="product.html" class="nav-link">Product</a>
+      <a href="product.html" class="nav-link active">Product</a>
       <a href="technology.html" class="nav-link">Technology</a>
     </nav>
     <button class="hamburger" aria-label="Open navigation" tabindex="0">
@@ -235,39 +244,38 @@
     </button>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Sustainable plant nutrition reimagined</h1>
-        <p>Using only water, air, and renewable electricity to create powerful plant nutrition that doesn't harm our
-          planet.</p>
-        <div style="display: flex; gap: 1rem;">
-          <a href="product.html" class="button">Learn More</a>
-          <a href="shop.html" class="button" style="background: var(--color-accent);">Order a Sample</a>
-        </div>
+  <main class="product-section">
+    <div class="product-grid">
+      <div class="product-content">
+        <h1>Sustainable Plant Nutrition</h1>
+        <p>We produce calcium nitrate fertilizer using only water, air and electricity from solar panels. To make the
+          fertilizer we use high voltages to produce air plasma which rips apart nitrogen molecules in air and binds
+          them in water.</p>
+        <p>Our production method relies completely on renewable energy - be it solar, wind or hydro. We leave no mark on
+          the environment and we are proud of it.</p>
+        <p>Our production plants are small and we set them up as close as possible to our customers so no unnecessary
+          transport is needed.</p>
+        <a href="technology.html" class="button">Learn about technology</a>
       </div>
-      <div class="hero-image">
-        <img src="images/Product 2.png" alt="Plant Mama Product">
+      <div class="product-image">
+        <img src="images/Product 2.png" alt="Plant Mama Fertilizer">
       </div>
-    </section>
+    </div>
 
-    <section class="section" id="features">
-      <h2 class="section-title">Why Choose Plant Mama</h2>
-      <div class="features">
-        <div class="feature">
-          <h3>Eco-Friendly</h3>
-          <p>Zero carbon footprint production using only renewable energy sources.</p>
-        </div>
-        <div class="feature">
-          <h3>Highly Effective</h3>
-          <p>As powerful as traditional fertilizers, backed by decades of research.</p>
-        </div>
-        <div class="feature">
-          <h3>Locally Produced</h3>
-          <p>Small-scale production facilities close to our customers.</p>
-        </div>
+    <div class="features">
+      <div class="feature">
+        <h3>Eco-Friendly Production</h3>
+        <p>Zero carbon footprint using only renewable energy sources and natural ingredients.</p>
       </div>
-    </section>
+      <div class="feature">
+        <h3>Local Manufacturing</h3>
+        <p>Small-scale production facilities close to our customers reduce transport emissions.</p>
+      </div>
+      <div class="feature">
+        <h3>High Effectiveness</h3>
+        <p>As powerful as traditional fertilizers while being completely environmentally friendly.</p>
+      </div>
+    </div>
   </main>
 
   <footer>

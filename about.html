@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plant Mama</title>
+  <title>About Us | Plant Mama</title>
   <style>
     :root {
       --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -71,59 +71,10 @@
       transition: opacity 0.2s;
     }
 
+    .nav-link:hover,
     .nav-link.active {
       opacity: 1;
       color: var(--color-primary);
-    }
-
-    .nav-link:hover {
-      opacity: 1;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
-      padding: var(--space-xl) var(--space-md);
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.1;
-      margin-bottom: var(--space-md);
-      font-weight: 800;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-      opacity: 0.8;
-      margin-bottom: var(--space-md);
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 2px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: var(--space-sm) var(--space-md);
-      background: var(--color-primary);
-      color: var(--color-secondary);
-      text-decoration: none;
-      border-radius: 2px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.2s;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
     }
 
     .section {
@@ -132,27 +83,61 @@
       margin: 0 auto;
     }
 
-    .section-title {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin-bottom: var(--space-lg);
-      text-align: center;
-    }
-
-    .features {
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-md);
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
     }
 
-    .feature {
-      padding: var(--space-md);
+    .about-content {
       background: var(--color-subtle);
+      padding: var(--space-lg);
       border-radius: 2px;
     }
 
-    .feature h3 {
-      margin-bottom: var(--space-sm);
+    .about-content h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
       color: var(--color-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .about-content p {
+      margin-bottom: var(--space-md);
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .team-grid {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      background: var(--color-subtle);
+      padding: var(--space-sm);
+      border-radius: 2px;
+    }
+
+    .member-photo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .member-info h3 {
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .member-info p {
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
 
     .hamburger {
@@ -179,17 +164,9 @@
       transition: 0.3s;
     }
 
-    footer {
-      text-align: center;
-      padding: var(--space-md);
-      opacity: 0.6;
-      margin-top: auto;
-    }
-
     @media (max-width: 768px) {
-      .hero {
+      .about-grid {
         grid-template-columns: 1fr;
-        text-align: center;
       }
 
       .nav {
@@ -214,6 +191,12 @@
         display: flex;
       }
     }
+
+    footer {
+      text-align: center;
+      padding: var(--space-md);
+      opacity: 0.6;
+    }
   </style>
 </head>
 
@@ -221,9 +204,9 @@
   <header class="header">
     <img src="images/logo 3.png" alt="Plant Mama" class="logo">
     <nav class="nav">
-      <a href="#" class="nav-link active">Home</a>
+      <a href="index.html" class="nav-link">Home</a>
       <a href="shop.html" class="nav-link">Shop</a>
-      <a href="about.html" class="nav-link">About</a>
+      <a href="about.html" class="nav-link active">About</a>
       <a href="contact.html" class="nav-link">Contact</a>
       <a href="product.html" class="nav-link">Product</a>
       <a href="technology.html" class="nav-link">Technology</a>
@@ -235,39 +218,53 @@
     </button>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Sustainable plant nutrition reimagined</h1>
-        <p>Using only water, air, and renewable electricity to create powerful plant nutrition that doesn't harm our
-          planet.</p>
-        <div style="display: flex; gap: 1rem;">
-          <a href="product.html" class="button">Learn More</a>
-          <a href="shop.html" class="button" style="background: var(--color-accent);">Order a Sample</a>
-        </div>
+  <main class="section">
+    <div class="about-grid">
+      <div class="about-content">
+        <h2>Who are we?</h2>
+        <p>We are a small team of young engineering graduates mentored by industry and academy experts. We operate from
+          Slovenia, Europe.</p>
+        <p>We are all hydroponic farming enthusiasts and that is what brought us together, to join forces and to make a
+          difference.</p>
+        <p>We are looking for more like minded people. If you are a hobby grower, gardener, farmer, mentor or investor
+          and you like what we do, then reach out to us! We would be more than happy to share our knowledge with you and
+          to hear your story.</p>
       </div>
-      <div class="hero-image">
-        <img src="images/Product 2.png" alt="Plant Mama Product">
-      </div>
-    </section>
 
-    <section class="section" id="features">
-      <h2 class="section-title">Why Choose Plant Mama</h2>
-      <div class="features">
-        <div class="feature">
-          <h3>Eco-Friendly</h3>
-          <p>Zero carbon footprint production using only renewable energy sources.</p>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="images/person1.jpg" alt="Samo" class="member-photo">
+          <div class="member-info">
+            <h3>Samo</h3>
+            <p>Founder & CEO</p>
+          </div>
         </div>
-        <div class="feature">
-          <h3>Highly Effective</h3>
-          <p>As powerful as traditional fertilizers, backed by decades of research.</p>
+
+        <div class="team-member">
+          <img src="images/person2.jpg" alt="Lovro" class="member-photo">
+          <div class="member-info">
+            <h3>Lovro</h3>
+            <p>Lead Marketing Specialist</p>
+          </div>
         </div>
-        <div class="feature">
-          <h3>Locally Produced</h3>
-          <p>Small-scale production facilities close to our customers.</p>
+
+        <div class="team-member">
+          <img src="images/person3.jpg" alt="Maruša" class="member-photo">
+          <div class="member-info">
+            <h3>Maruša</h3>
+            <p>Plant Scientist and Agronomist</p>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img src="images/person4.jpg" alt="Klemen" class="member-photo">
+          <div class="member-info">
+            <h3>Klemen</h3>
+            <p>Operations Manager</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer>
