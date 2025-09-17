@@ -372,62 +372,73 @@
               console.error('EmailJS error:', error);
             });
         }
+      });
 
-      // Hamburger menu toggle
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav');
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    // Cookie consent functions
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Hamburger menu
       const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav');
-        if (hamburger && navMenu) {
-          hamburger.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
-          });
-        }
-
-        // Cookie consent functions
-        function setCookie(name, value, days) {
-          let expires = "";
-          if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-          }
-          document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        function getCookie(name) {
-          const nameEQ = name + "=";
-          const ca = document.cookie.split(';');
-          for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-          }
-          return null;
-        }
-
-        // Cookie consent
-        const consent = getCookie('cookieConsent');
-        const banner = document.getElementById('cookieConsent');
-
-        if (!consent) {
-          banner.classList.add('show');
-        }
-
-        document.getElementById('acceptCookies').addEventListener('click', function () {
-          setCookie('cookieConsent', 'true', 365);
-          banner.classList.remove('show');
-          gtag('consent', 'update', {
-            'analytics_storage': 'granted'
-          });
+      const navMenu = document.querySelector('.nav');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function () {
+          navMenu.classList.toggle('active');
         });
+      }
 
-        document.getElementById('rejectCookies').addEventListener('click', function () {
-          setCookie('cookieConsent', 'false', 365);
-          banner.classList.remove('show');
-          gtag('consent', 'update', {
-            'analytics_storage': 'denied'
-          });
+      // Cookie consent
+      const consent = getCookie('cookieConsent');
+      const banner = document.getElementById('cookieConsent');
+
+      if (!consent) {
+        banner.classList.add('show');
+      }
+
+      document.getElementById('acceptCookies').addEventListener('click', function () {
+        setCookie('cookieConsent', 'true', 365);
+        banner.classList.remove('show');
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted'
         });
       });
+
+      document.getElementById('rejectCookies').addEventListener('click', function () {
+        setCookie('cookieConsent', 'false', 365);
+        banner.classList.remove('show');
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied'
+        });
+      });
+    });
   </script>
 </head>
 
