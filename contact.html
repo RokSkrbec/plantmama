@@ -4,7 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Plant Mama</title>
+  <title>Contact Us | Plant Mama - Sustainable Plant Nutrition</title>
+  <meta name="description"
+    content="Get in touch with Plant Mama. Learn more about our sustainable fertilizer solutions or inquire about partnerships and collaboration opportunities.">
+  <meta name="keywords"
+    content="contact plant mama, sustainable fertilizer inquiries, eco-friendly plant nutrition, fertilizer partnership">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plantmama.com/contact">
+  <meta property="og:title" content="Contact Us | Plant Mama - Sustainable Plant Nutrition">
+  <meta property="og:description"
+    content="Get in touch with Plant Mama. Learn more about our sustainable fertilizer solutions or inquire about partnerships and collaboration opportunities.">
+  <meta property="og:image" content="https://plantmama.com/images/Product 2.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://plantmama.com/contact">
+  <meta property="twitter:title" content="Contact Us | Plant Mama - Sustainable Plant Nutrition">
+  <meta property="twitter:description"
+    content="Get in touch with Plant Mama. Learn more about our sustainable fertilizer solutions or inquire about partnerships and collaboration opportunities.">
+  <meta property="twitter:image" content="https://plantmama.com/images/Product 2.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://plantmama.com/contact">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <style>
     :root {
       --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -182,22 +208,23 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       cursor: pointer;
       background: var(--color-primary);
       border: none;
-      border-radius: 8px;
+      border-radius: 4px;
       margin-left: 1em;
+      padding: 8px 0;
     }
 
     .hamburger span {
       display: block;
       width: 26px;
-      height: 4px;
+      height: 3px;
       background: var(--color-secondary);
-      margin: 4px 0;
-      border-radius: 2px;
+      margin: 3px 0;
+      border-radius: 1px;
       transition: 0.3s;
     }
 
@@ -207,7 +234,7 @@
         position: absolute;
         top: 70px;
         right: 1em;
-        background: var(--white);
+        background: #ffffff;
         flex-direction: column;
         gap: 1em;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
@@ -262,7 +289,7 @@
             message: this.message.value
           };
 
-          emailjs.send('service_mrqkv3o', 'template_39kfyrc', {
+          emailjs.send('service_mrqkv3o', 'template_tkj5gel', {
             email: formData.email,
             phone: formData.phone,
             title: formData.subject,
@@ -335,7 +362,9 @@
         <textarea id="message" name="message" required></textarea>
       </div>
 
-      <button type="submit" class="button">Send Message</button>
+      <div style="text-align: right;">
+        <button type="submit" class="button">Send Message</button>
+      </div>
     </form>
   </main>
 
