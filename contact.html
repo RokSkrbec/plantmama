@@ -237,6 +237,55 @@
       transition: 0.3s;
     }
 
+    .cookie-consent {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-secondary);
+      color: white;
+      padding: var(--space-md);
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .cookie-consent.show {
+      display: flex;
+    }
+
+    .cookie-text {
+      flex: 1;
+      margin-right: var(--space-md);
+      font-size: 0.9rem;
+    }
+
+    .cookie-buttons {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .cookie-btn {
+      padding: var(--space-xs) var(--space-sm);
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .cookie-btn.accept {
+      background: var(--color-primary);
+      color: var(--color-secondary);
+    }
+
+    .cookie-btn.reject {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+
     @media (max-width: 768px) {
       .nav {
         display: none;
@@ -266,6 +315,16 @@
 
       .contact-form {
         padding: var(--space-md);
+      }
+
+      .cookie-consent {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+      }
+
+      .cookie-text {
+        margin-right: 0;
       }
     }
   </style>
@@ -312,23 +371,79 @@
               showNotification('Failed to send message. Please try again.', true);
               console.error('EmailJS error:', error);
             });
-        });
-      }
+        }
 
       // Hamburger menu toggle
       const hamburger = document.querySelector('.hamburger');
-      const navMenu = document.querySelector('.nav');
-      if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function () {
-          navMenu.classList.toggle('active');
+        const navMenu = document.querySelector('.nav');
+        if (hamburger && navMenu) {
+          hamburger.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+          });
+        }
+
+        // Cookie consent functions
+        function setCookie(name, value, days) {
+          let expires = "";
+          if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+          const nameEQ = name + "=";
+          const ca = document.cookie.split(';');
+          for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+          }
+          return null;
+        }
+
+        // Cookie consent
+        const consent = getCookie('cookieConsent');
+        const banner = document.getElementById('cookieConsent');
+
+        if (!consent) {
+          banner.classList.add('show');
+        }
+
+        document.getElementById('acceptCookies').addEventListener('click', function () {
+          setCookie('cookieConsent', 'true', 365);
+          banner.classList.remove('show');
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
         });
-      }
-    });
+
+        document.getElementById('rejectCookies').addEventListener('click', function () {
+          setCookie('cookieConsent', 'false', 365);
+          banner.classList.remove('show');
+          gtag('consent', 'update', {
+            'analytics_storage': 'denied'
+          });
+        });
+      });
   </script>
 </head>
 
 <body>
   <div id="notification" class="notification"></div>
+  <div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-text">
+      We use cookies to improve your experience and analyze site usage.
+      By continuing to use this site, you consent to our use of cookies.
+      <a href="privacy.html" style="color: var(--color-primary);">Learn more</a>
+    </div>
+    <div class="cookie-buttons">
+      <button class="cookie-btn reject" id="rejectCookies">Reject All</button>
+      <button class="cookie-btn accept" id="acceptCookies">Accept All</button>
+    </div>
+  </div>
 
   <header class="header">
     <img src="images/logo 3.png" alt="Plant Mama" class="logo">
