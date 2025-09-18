@@ -4,6 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5be9b9">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <title>About Us | Plant Mama - Sustainable Fertilizer Innovation</title>
   <meta name="description"
     content="Meet the team behind Plant Mama's sustainable fertilizer revolution. Young engineers and experts working together to create eco-friendly plant nutrition solutions.">
@@ -240,6 +244,24 @@
       border: 1px solid white;
     }
 
+    /* Accessibility improvements */
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     @media (max-width: 768px) {
       .about-grid {
         grid-template-columns: 1fr;
@@ -287,6 +309,10 @@
 </head>
 
 <body>
+  <noscript>
+    <p style="text-align: center; padding: 20px;">Please enable JavaScript to use this website's full functionality.
+    </p>
+  </noscript>
   <header class="header">
     <img src="images/logo 3.png" alt="Plant Mama" class="logo">
     <nav class="nav">
@@ -360,8 +386,10 @@
       <a href="privacy.html" style="color: var(--color-primary);">Learn more</a>
     </div>
     <div class="cookie-buttons">
-      <button class="cookie-btn reject" id="rejectCookies">Reject All</button>
-      <button class="cookie-btn accept" id="acceptCookies">Accept All</button>
+      <button type="button" class="cookie-btn reject" id="rejectCookies" aria-label="Reject all cookies">Reject All
+      </button>
+      <button type="button" class="cookie-btn accept" id="acceptCookies" aria-label="Accept all cookies">Accept All
+      </button>
     </div>
   </div>
 

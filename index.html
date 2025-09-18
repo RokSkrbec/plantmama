@@ -12,8 +12,13 @@
       'analytics_storage': 'denied'
     });
     gtag('config', 'G-0PZZJT1TEK');
-  </script>charset="UTF-8">
+  </script>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5be9b9">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <title>Plant Mama | Sustainable Plant Nutrition Reimagined</title>
   <meta name="description"
     content="Plant Mama revolutionizes plant nutrition with sustainable fertilizer made using only water, air, and renewable electricity. Zero carbon footprint, locally produced.">
@@ -61,6 +66,24 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    /* Accessibility improvements */
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     html {
@@ -326,6 +349,9 @@
 </head>
 
 <body>
+  <noscript>
+    <p style="text-align: center; padding: 20px;">Please enable JavaScript to use this website's full functionality.</p>
+  </noscript>
   <div id="cookieConsent" class="cookie-consent">
     <div class="cookie-text">
       We use cookies to improve your experience and analyze site usage.
@@ -333,13 +359,15 @@
       <a href="privacy.html" style="color: var(--color-primary);">Learn more</a>
     </div>
     <div class="cookie-buttons">
-      <button class="cookie-btn reject" id="rejectCookies">Reject All</button>
-      <button class="cookie-btn accept" id="acceptCookies">Accept All</button>
+      <button type="button" class="cookie-btn reject" id="rejectCookies" aria-label="Reject all cookies">Reject
+        All</button>
+      <button type="button" class="cookie-btn accept" id="acceptCookies" aria-label="Accept all cookies">Accept
+        All</button>
     </div>
   </div>
 
   <header class="header">
-    <img src="images/logo 3.png" alt="Plant Mama" class="logo">
+    <img src="images/logo 3.png" alt="Plant Mama" class="logo" width="32" height="32">
     <nav class="nav">
       <a href="#" class="nav-link active">Home</a>
       <a href="shop.html" class="nav-link">Shop</a>
